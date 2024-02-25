@@ -1,6 +1,14 @@
+import currency_codes
 from forex_python.converter import CurrencyRates
+from currency_codes import get_currency_by_code, CurrencyNotFoundError
 
+# INSTANTIATE A CURRENCYRATES CLASS
 c = CurrencyRates()
+
+
+# print(get_currency_by_code('USD').code)
+# currency_info = get_currency_by_code(a)
+# print(currency_info.code)
 # print(c.__dir__())
 
 
@@ -8,10 +16,20 @@ def currency_converter():
     # USERS STARTING CURRENCY
     base_cur = input('What currency are you exchanging? ').upper()
     # print(base_cur)
+    try:
+        get_currency_by_code(base_cur)
+    except CurrencyNotFoundError:
+        print("Invalid. Re-Start and use valid Currency Code")
+        exit()
 
     # USERS TARGET CURRENCY
     destination_cur = input('What currency do you want to receive? ').upper()
     # print(destination_cur)
+    try:
+        get_currency_by_code(destination_cur)
+    except CurrencyNotFoundError:
+        print("Invalid. Re-Start and use valid Currency Code")
+        exit()
 
     # AMOUNT OF SOURCE CURRENCY BEING EXCHANGED
     try:
@@ -20,13 +38,11 @@ def currency_converter():
         while input_amount <= 0:
             input_amount = float(input('Invalid entry. Please try again: '))
     except ValueError:
-        print("Invalid entry. Please restart")
+        print("Invalid entry. Please Restart")
         exit()
 
     print('Please wait... Verifying transaction')
     conversion = (c.convert(base_cur, destination_cur, input_amount))
-    # base_cur_SYMBOL = c.get_symbol(base_cur)
-    # destination_cur_SYMBOL = c.get_symbol(destination_cur)
 
     rounded_final_currency = round(conversion, 2)
 

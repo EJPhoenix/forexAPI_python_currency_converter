@@ -1,8 +1,7 @@
-import currency_codes
 from forex_python.converter import CurrencyRates
 from currency_codes import get_currency_by_code, CurrencyNotFoundError
 
-# INSTANTIATE A CURRENCYRATES CLASS
+# INSTANTIATE A CURRENCY RATES CLASS
 c = CurrencyRates()
 
 

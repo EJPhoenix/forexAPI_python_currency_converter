@@ -6,9 +6,7 @@ c = CurrencyRates()
 
 
 # print(get_currency_by_code('USD').code)
-# currency_info = get_currency_by_code(a)
 # print(currency_info.code)
-# print(c.__dir__())
 
 
 def currency_converter():
